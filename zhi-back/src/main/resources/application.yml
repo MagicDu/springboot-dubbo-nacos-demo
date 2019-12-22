@@ -1,0 +1,26 @@
+server:
+  port: 9097
+
+spring:
+  application:
+    name: user-service
+
+nacos:
+  discovery:
+    server-addr: 127.0.0.1:8848
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+      address: nacos://${nacos.discovery.server-addr}
+  protocol:
+    name: dubbo
+    port: 20880
+  scan:
+    base-packages: com.magicdu.dubbo.back.service
+  consumer:
+    check: false # 启动时不检查 consumer
+
+
+
